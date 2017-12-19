@@ -1,0 +1,1 @@
+echo "Starting up Space Engineers dedicated server..."
