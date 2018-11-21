@@ -32,6 +32,6 @@ RUN Write-Host "Downloading steamcmd"; `
 
 #COPY ./SpaceEngineers-Dedicated.cfg /world/SpaceEngineers-Dedicated.cfg
 CMD Write-Host "Updating Dedicated Server"; `
-	C:\steamcmd\steamcmd.exe +login anonymous +force_install_dir c:\SpaceEngineers +app_update 298740 validate +quit; `
+	C:\steamcmd\steamcmd.exe +login anonymous +force_install_dir c:\SpaceEngineers +app_update 298740 +quit; `
 	Write-Host "Launching Dedicated Server"; `
 	Start-Process -WorkingDirectory C:\SpaceEngineers\DedicatedServer64 -FilePath SpaceEngineersDedicated.exe -Wait -ArgumentList \"-console\",\"-path\",\"C:\world\";
