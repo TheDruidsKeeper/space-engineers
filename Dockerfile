@@ -33,7 +33,7 @@ RUN Write-Host "Installing dedicated server"; `
 	C:\steamcmd\steamcmd.exe +login anonymous +force_install_dir c:\SpaceEngineers +app_update 298740 validate +quit; `
 	Write-Host "SE Dedicated Server is installed and ready for action";
 
-COPY ./scripts c:/scripts/
+COPY ./scripts C:/scripts/
 	
 # https://docs.docker.com/engine/reference/builder/#healthcheck
 HEALTHCHECK --interval=30s --timeout=60s --start-period=90s CMD powershell -File c:/scripts/health-check.ps1
@@ -42,4 +42,6 @@ HEALTHCHECK --interval=30s --timeout=60s --start-period=90s CMD powershell -File
 CMD Write-Host "Updating Dedicated Server"; `
 	C:\steamcmd\steamcmd.exe +login anonymous +force_install_dir c:\SpaceEngineers +app_update 298740 +quit; `
 	Write-Host "Launching Dedicated Server"; `
+	C:\scripts\setup.bat
 	Start-Process -WorkingDirectory C:\SpaceEngineers\DedicatedServer64 -FilePath SpaceEngineersDedicated.exe -Wait -ArgumentList \"-console\",\"-path\",\"C:\world\";
+	
